@@ -2,7 +2,7 @@
 {
     internal class LogTypeConstant
     {
-        internal static string Error = "Error";
-        internal static string Info = "Info";
+        internal static string Error = "ERROR";
+        internal static string Info = "INFO";
     }
 }
