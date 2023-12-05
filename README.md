@@ -30,11 +30,11 @@ The maximum character limit for a message is 8,000.
 First, [install NuGet](http://docs.nuget.org/docs/start-here/installing-nuget). Then, install [AutoMapper](https://www.nuget.org/packages/AutoMapper/) from the package manager console:
 
 ```
-PM> Install-Package 
+PM> Install-Package JbsnLogger
 ```
 Or from the .NET CLI as:
 ```
-dotnet add package 
+dotnet add package JbsnLogger
 ```
 
 ### License, etc.
