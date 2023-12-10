@@ -148,7 +148,7 @@ Creates LoggerMiddleware
 
 ### Where can I get it?
 
-First, [install NuGet](http://docs.nuget.org/docs/start-here/installing-nuget). Then, install [AutoMapper](https://www.nuget.org/packages/AutoMapper/) from the package manager console:
+First, [install NuGet](http://docs.nuget.org/docs/start-here/installing-nuget). Then, install [JbsnLogger](https://www.nuget.org/packages/JbsnLogger) from the package manager console:
 
 ```
 PM> Install-Package JbsnLogger
