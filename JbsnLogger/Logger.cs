@@ -20,43 +20,43 @@ namespace JbsnLogger
         }
 
         /// <summary>
-        /// Formats and writes an log message.
+        /// Format and write an log message.
         /// </summary>
-        public static Task Log(LogLevel logLevel, string message, Exception? exception = null, Guid? eventId = null)
+        public static Task Log(LoggerLevel logLevel, string? message = null, Exception? exception = null, Guid? eventId = null, LoggerRouteInfo? routeInfo = null)
         {
             switch (logLevel)
             {
-                case LogLevel.Error:
-                    return LogError(message, exception, eventId);
+                case LoggerLevel.Error:
+                    return LogError(message, exception, eventId, routeInfo);
                 default:
-                    return LogInfo(message, exception, eventId);
+                    return LogInfo(message, exception, eventId, routeInfo);
             }
         }
 
         /// <summary>
-        /// Formats and writes an error log message.
+        /// Format and write an error log message.
         /// </summary>
-        public static Task LogError(string message, Exception? exception = null, Guid? eventId = null)
+        public static Task LogError(string? message = null, Exception? exception = null, Guid? eventId = null, LoggerRouteInfo? routeInfo = null)
         {
-            return Log(LogTypeConstant.Error, message, exception, eventId);
+            return Log(LogTypeConstant.Error, message, exception, eventId, routeInfo);
         }
 
         /// <summary>
-        /// Formats and writes an informational log message.
+        /// Format and write an informational log message.
         /// </summary>
-        public static Task LogInfo(string message, Exception? exception = null, Guid? eventId = null)
+        public static Task LogInfo(string? message = null, Exception? exception = null, Guid? eventId = null, LoggerRouteInfo? routeInfo = null)
         {
-            return Log(LogTypeConstant.Info, message, exception, eventId);
+            return Log(LogTypeConstant.Info, message, exception, eventId, routeInfo);
         }
 
         /// <summary>
-        /// Formats and writes an log message.
+        /// Format and write an log message.
         /// </summary>
-        private static async Task Log(string logType, string message, Exception? exception = null, Guid? eventId = null)
+        private static async Task Log(string logType, string? message = null, Exception? exception = null, Guid? eventId = null, LoggerRouteInfo? routeInfo = null)
         {
             ValidateApplicationKey();
-            var dataDto = LogTransform.Transform(message, exception, eventId);
-            var recordDto = new LoggerRecordDTO
+            var dataDto = LogTransform.Transform(message, exception, eventId, routeInfo);
+            var recordDto = new LoggerRecord
             {
                 ApplicationKey = _applicationKey,
                 Data = dataDto,

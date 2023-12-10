@@ -1,6 +1,6 @@
 ﻿namespace JbsnLogger.Enum
 {
-    public enum LogLevel
+    public enum LoggerLevel
     {
         Error,
         Info,

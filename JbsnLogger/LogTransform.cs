@@ -1,32 +1,43 @@
 ﻿
 using JbsnLogger.Dto;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace JbsnLogger
 {
     internal static class LogTransform
     {
-        internal static string Transform(string message, Exception? exception = null, Guid? eventId = null)
+        internal static string Transform(
+            string? message,
+            Exception? exception = null,
+            Guid? eventId = null,
+            LoggerRouteInfo? routeInfo = null)
         {
-            if (!string.IsNullOrEmpty(message) && exception == null && eventId == null)
+            LoggerErrorInfo? errorInfo = null;
+            if (exception != null)
             {
-                return message;
+                errorInfo = new LoggerErrorInfo
+                {
+                    Exception = exception.Message,
+                    StackTrace = exception.StackTrace,
+                };
             }
-
-            if (exception != null && string.IsNullOrEmpty(message) && eventId == null)
-            {
-                return exception.Message;
-            }
-
-            var dataDto = new LoggetDataDto
+            var dataDto = new LoggerData
             {
                 EventId = eventId,
                 Message = message,
-                Exception = exception?.Message,
-                StackTrace = exception?.StackTrace
+                RouteInfo = routeInfo,
+                ErrorInfo = errorInfo
             };
 
-            return JsonSerializer.Serialize(dataDto);
+            var options = new JsonSerializerOptions
+            {
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                WriteIndented = false
+            };
+
+            return JsonSerializer.Serialize(dataDto, options);
         }
     }
 }
