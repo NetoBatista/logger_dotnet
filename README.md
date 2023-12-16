@@ -144,7 +144,6 @@ Creates LoggerMiddleware
         }
     }
 ```
-</details>
 
 ### Where can I get it?
 

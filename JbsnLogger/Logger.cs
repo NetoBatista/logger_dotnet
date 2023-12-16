@@ -7,7 +7,7 @@ namespace JbsnLogger
 {
     public static class Logger
     {
-        private static string _baseAddress = "https://jbsn-logger-record.azurewebsites.net/api/record";
+        private static string _baseAddress = "https://jbsn-logger.azurewebsites.net/record";
 
         private static string _applicationKey = string.Empty;
 
